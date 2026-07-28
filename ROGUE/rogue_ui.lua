@@ -910,6 +910,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
             current_target = nil,
         },
         friends = {},
+		robloxFriends = {},
         connections = {},
         window_active = true,
     }
@@ -3160,7 +3161,12 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
         end
 
         utility:Connection(plrs.PlayerRemoving, function(player)
+			cheat_client.robloxFriends[player.UserId] = nil
             player_races[player] = nil
+        end)
+
+		utility:Connection(plr.PlayerAdded, function(player) -- the 10 thousands playeradded
+            cheat_client.robloxFriends[player.UserId] = plr:IsFriendsWith(player.UserId)
         end)
 
         function cheat_client:get_race(player)
@@ -3268,7 +3274,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                 local lastName2 = plr:GetAttribute("LastName")
 
                 local is_housemate = lastName1 and lastName1 ~= "" and lastName1 == lastName2
-                local is_friend = plr:IsFriendsWith(player.UserId)
+                local is_friend = cheat_client.robloxFriends[player.UserId]
                 local is_manual_friend = cheat_client and cheat_client.friends and table.find(cheat_client.friends, player.UserId) ~= nil
 
                 return (auto_housemate_ally and is_housemate) or
@@ -3285,7 +3291,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                 local lastName2 = FindFirstChild(stats2, "LastName")
 
                 local is_housemate = lastName1 and lastName2 and lastName1.Value == lastName2.Value
-                local is_friend = plr:IsFriendsWith(player.UserId)
+                local is_friend = cheat_client.robloxFriends[player.UserId]
                 local is_manual_friend = table.find(cheat_client.friends, player.UserId) ~= nil
 
                 return (auto_housemate_ally and is_housemate) or
@@ -3293,7 +3299,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                        is_manual_friend
             end
 
-            local is_friend = plr:IsFriendsWith(player.UserId)
+            local is_friend = cheat_client.robloxFriends[player.UserId]
             local is_manual_friend = table.find(cheat_client.friends, player.UserId) ~= nil
 
             return (auto_friend_ally and is_friend) or is_manual_friend
