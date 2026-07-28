@@ -119,7 +119,7 @@ local ObsidianImageManager = {
     }
 }
 do
-    local BaseURL = "https://raw.githubusercontent.com/deividcomsono/Obsidian/refs/heads/main/"
+    local BaseURL = "https://upio-github-mirror.pages.dev/source.lua"
 
     local function RecursiveCreatePath(Path: string, IsFile: boolean?)
         if not isfolder or not makefolder then return end
