@@ -3165,7 +3165,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
             player_races[player] = nil
         end)
 
-		utility:Connection(plr.PlayerAdded, function(player) -- the 10 thousands playeradded
+		utility:Connection(plrs.PlayerAdded, function(player) -- the 10 thousands playeradded
             cheat_client.robloxFriends[player.UserId] = plr:IsFriendsWith(player.UserId)
         end)
 
